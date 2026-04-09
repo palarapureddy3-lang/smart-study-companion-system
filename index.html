@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart College Platform</title>
+    <meta name="description" content="A dynamic and premium web interface for the Modern College Platform.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Keep the old styles + new sidebar styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <div class="background-effects">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Auth View Container -->
+    <div id="auth-view" class="view-container active">
+        <div class="glass-panel auth-panel fade-in">
+            <div class="auth-header">
+                <h2 id="auth-title">Welcome Back</h2>
+                <p id="auth-subtitle">Unlock your learning potential today.</p>
+            </div>
+            
+            <form id="auth-form">
+                <div id="name-group" class="input-group hidden">
+                    <label for="reg-name">Full Name</label>
+                    <input type="text" id="reg-name" placeholder="E.g. John Doe">
+                </div>
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="admin or student" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <p class="error-text" id="auth-error"></p>
+                <button type="submit" class="btn-primary" id="auth-btn">Sign In</button>
+            </form>
+
+            <div class="auth-footer">
+                <p id="auth-toggle-text">First time here? <br> <span id="toggle-auth-mode" class="text-link">Create a new account</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Layout Container (Sidebar + Main Content) -->
+    <div id="app-layout" class="layout-container hidden">
+        <!-- Sidebar Navigation -->
+        <aside class="glass-sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">College<span class="accent">Hub</span></div>
+                <button class="mobile-toggle" id="mobile-toggle"><i class="fas fa-bars"></i></button>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-target="dashboard-view"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="#" class="nav-item" data-target="complaints-view"><i class="fas fa-exclamation-circle"></i> Complaints</a>
+                <a href="#" class="nav-item" data-target="events-view"><i class="fas fa-calendar-check"></i> Events</a>
+                <a href="#" class="nav-item" data-target="holidays-view"><i class="fas fa-plane"></i> Holidays</a>
+                <a href="#" class="nav-item" data-target="timetable-view"><i class="fas fa-clock"></i> Timetable</a>
+                <a href="#" class="nav-item" data-target="exams-view"><i class="fas fa-file-alt"></i> Exams</a>
+            </nav>
+            <div class="sidebar-footer">
+                <p class="role-badge" id="user-role-badge">Student</p>
+                <button id="logout-btn" class="btn-secondary"><i class="fas fa-sign-out-alt"></i> Log Out</button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content-layout">
+            <!-- Top Header (Notifications & Profile snippet) -->
+            <header class="glass-header">
+                <div class="header-left">
+                    <h2 id="current-view-title">Dashboard Overview</h2>
+                </div>
+                <div class="header-right">
+                    <!-- Notifications -->
+                    <div class="notification-wrapper">
+                        <button class="icon-btn" id="notif-btn"><i class="fas fa-bell"></i><span class="badge" id="notif-badge">2</span></button>
+                        <div class="glass-panel dropdown-menu hidden" id="notif-dropdown">
+                            <h4>Notifications</h4>
+                            <ul id="notif-list">
+                                <!-- Dynamic notifications -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Scrollable Pages View -->
+            <div class="pages-container">
+                
+                <!-- 1. Dashboard View -->
+                <div id="dashboard-view" class="page-view active fade-in">
+                    <div class="dashboard-grid">
+                        <div class="glass-panel profile-card">
+                            <div class="profile-header">
+                                <div class="avatar"><span id="avatar-initials">JD</span></div>
+                                <div class="profile-info">
+                                    <h1 id="profile-name">John Doe</h1>
+                                    <p class="profile-major">B.S. Computer Science</p>
+                                    <p class="profile-id">ID: <span class="highlight">#84920</span></p>
+                                </div>
+                            </div>
+                            <div class="stats-grid">
+                                <div class="stat-box"><div class="stat-icon">📚</div><div class="stat-details"><p class="stat-label">Classes</p><p class="stat-val">5</p></div></div>
+                                <div class="stat-box"><div class="stat-icon">🎯</div><div class="stat-details"><p class="stat-label">GPA</p><p class="stat-val">3.85</p></div></div>
+                                <div class="stat-box"><div class="stat-icon">🎓</div><div class="stat-details"><p class="stat-label">Credits</p><p class="stat-val">84</p></div></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-panel schedule-card delay-1">
+                            <div class="card-header">
+                                <h3>Today's Schedule</h3>
+                                <span class="date-badge" id="current-date">Thu, Apr 9</span>
+                            </div>
+                            <div class="schedule-timeline" id="dashboard-schedule-timeline">
+                                <p class="text-muted">Loading...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Complaints View -->
+                <div id="complaints-view" class="page-view hidden">
+                    <div class="glass-panel list-panel">
+                        <div class="panel-header">
+                            <h3>Student Complaints</h3>
+                            <button class="btn-primary btn-sm" id="new-complaint-btn"><i class="fas fa-plus"></i> New Complaint</button>
+                        </div>
+                        
+                        <!-- New Complaint Form -->
+                        <div id="complaint-form-container" class="hidden mb-20">
+                            <form id="complaint-form" class="form-container">
+                                <div class="input-group">
+                                    <input type="text" id="comp-title" placeholder="Problem Title" required>
+                                </div>
+                                <div class="input-group">
+                                    <textarea id="comp-desc" placeholder="Describe your issue..." rows="3" required></textarea>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn-primary">Submit</button>
+                                    <button type="button" class="btn-secondary" id="cancel-complaint-btn">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="list-container" id="complaints-list">
+                            <!-- Dynamic complaints -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Events View -->
+                <div id="events-view" class="page-view hidden">
+                    <div class="glass-panel list-panel">
+                        <div class="panel-header">
+                            <h3>Upcoming Events</h3>
+                            <button class="btn-primary btn-sm admin-only hidden" id="new-event-btn"><i class="fas fa-plus"></i> Add Event</button>
+                        </div>
+
+                        <!-- Admin Event Form -->
+                        <div id="event-form-container" class="hidden mb-20">
+                            <form id="event-form" class="form-container">
+                                <div class="input-group"><input type="text" id="ev-title" placeholder="Event Title" required></div>
+                                <div class="input-group"><input type="date" id="ev-date" required></div>
+                                <div class="input-group"><input type="time" id="ev-time" required></div>
+                                <div class="input-group"><textarea id="ev-desc" placeholder="Event Description" rows="2" required></textarea></div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn-primary">Save Event</button>
+                                    <button type="button" class="btn-secondary" id="cancel-event-btn">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="events-grid" id="events-list">
+                            <!-- Dynamic events -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Holidays View -->
+                <div id="holidays-view" class="page-view hidden">
+                    <div class="glass-panel list-panel">
+                        <div class="panel-header">
+                            <h3>Official Holidays</h3>
+                        </div>
+                        <ul class="data-list" id="holidays-list">
+                            <!-- Dynamic holidays -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 5. Timetable View -->
+                <div id="timetable-view" class="page-view hidden">
+                    <div class="glass-panel list-panel">
+                        <div class="panel-header">
+                            <h3>Weekly Timetable</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="glass-table">
+                                <thead>
+                                    <tr>
+                                        <th>Day</th>
+                                        <th>Time</th>
+                                        <th>Subject</th>
+                                        <th>Room/Location</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="timetable-tbody">
+                                    <!-- Dynamic Timetable -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Exams View -->
+                <div id="exams-view" class="page-view hidden">
+                    <div class="glass-panel list-panel">
+                        <div class="panel-header">
+                            <h3>Exam Schedule & Notifications</h3>
+                        </div>
+                        <div class="list-container" id="exams-list">
+                            <!-- Dynamic exams -->
+                        </div>
+                    </div>
+                </div>
+                
+            </div> <!-- End Pages Container -->
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
